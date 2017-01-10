@@ -1,0 +1,11 @@
+<h1>Jobs#index</h1>
+<p>Find me in app/views/jobs/index.html.erb</p>
+
+<% @jobs.each do |job| %>
+  <br>
+  <% link_to
+  <h2><%= job.job_title %></h2>
+  <p>Empresa :<%= job.company %> <%= job.city %></p>
+  <p><%= job.description %></p>
+  <br>
+<% end %>

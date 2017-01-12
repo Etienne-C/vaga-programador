@@ -1,2 +1,21 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+<div class="container">
+
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="text-center">
+      <h1><%= @job.job_title %></h1>
+      <br>
+      <div class="cell-list-content-icon" >
+        <span><i class="fa fa-briefcase"></i> <%= @job.company %></span>
+        <span><i class="fa fa-map-marker"></i> <%= @job.city %></span>
+      </div>
+      <br>
+      <h2>Descrição</h2>
+      <p><%= @job.description %></p>
+      <br>
+      <a href="<%= @job.url %>" class="btn btn-success btn-lg" target="_blank">CANDIDATAR</a>
+    </div>
+  </div>
+</div>
+
+</div>

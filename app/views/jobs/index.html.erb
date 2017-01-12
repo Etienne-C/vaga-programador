@@ -1,11 +1,26 @@
-<h1>Jobs#index</h1>
-<p>Find me in app/views/jobs/index.html.erb</p>
+<div class="container">
 
-<% @jobs.each do |job| %>
-  <br>
-  <% link_to
-  <h2><%= job.job_title %></h2>
-  <p>Empresa :<%= job.company %> <%= job.city %></p>
-  <p><%= job.description %></p>
-  <br>
-<% end %>
+  <div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-9">
+      <div class="text-center">
+        <h1>Todas as Vagas</h1>
+      </div>
+      <br>
+      <% @jobs.each do |job| %>
+        <div class="cell-list">
+          <%= link_to job_path(job) do %>
+            <h2><%= job.job_title %></h2>
+            <div class="cell-list-content-icon" >
+              <span><i class="fa fa-briefcase"></i> <%= job.company %></span>
+              <span><i class="fa fa-map-marker"></i> <%= job.city %></span>
+            </div>
+            <p><%= job.description.first(200) %>...</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

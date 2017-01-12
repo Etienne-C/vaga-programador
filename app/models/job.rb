@@ -6,7 +6,7 @@ class Job < ApplicationRecord
 
   def scrapping_infojobs
     page = 0
-    2.times do # Change in function of the number pages
+    1.times do # Change in function of the number pages
       page += 1
       html_file = open("http://m.infojobs.com.br/vagas-de-emprego-programador.aspx?Page=#{page}").read
       html_doc = Nokogiri::HTML(html_file)
@@ -15,24 +15,22 @@ class Job < ApplicationRecord
         job_id = id.text
         next if job_id.empty?
 
-        html_job = open("http://m.infojobs.com.br/detail.aspx?vc=#{job_id}").read
+        html_job = open("http://www.infojobs.com.br/vaga-de-programador__#{job_id}.aspx").read
         html_job_doc = Nokogiri::HTML(html_job)
-
-        description1 = html_job_doc.search('ol.descriptionItems').text
-        description2 = html_job_doc.search('div.vacancyRequirements').text
-        description_all = description1 + description2
-
         next if Job.exists?(jobkey: :job_id)
         Job.create!(
           jobkey: job_id,
-          job_title: html_job_doc.search("h1").text,
-          description: description_all,
-          company: html_job_doc.search("h3.companyName").text,
+          job_title: html_job_doc.search("span#ctl00_phMasterPage_cVacancySummary_litVacancyTitle").text,
+          description: html_job_doc.search("ol.descriptionItems")[0].text,
+          salary: html_job_doc.search("span#ctl00_phMasterPage_cVacancySummary_litSalary").text,
+          contract: html_job_doc.search("span#ctl00_phMasterPage_cVacancySummary_litContractType").text,
+          company: html_job_doc.search("span#ctl00_phMasterPage_cVacancySummary_litCompany").text,
+          company_description: html_job_doc.search("span#ctl00_phMasterPage_cCompanyLogo_litDescription").text,
+          candidate_description: html_job_doc.search("ol.descriptionItems")[1].text,
+          city: html_job_doc.search("span#ctl00_phMasterPage_cVacancySummary_litLocation").text,
           url: "http://www.infojobs.com.br/vaga-de-programador__#{job_id}.aspx",
-          city: html_job_doc.search("span.js_litLocation").text,
           source: "infojobs")
       end
     end
   end
-
 end

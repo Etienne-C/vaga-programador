@@ -7,7 +7,16 @@
       <div class="wrapper-index-filters font-text-space">
         <h3>Categorias</h3>
         <ul>
-          <li>Java</li>
+          <li>Java
+            <% counter = 0 %>
+            <% @jobs.each do |job| %>
+              <% if job.description.include?("Java") || job.description.include?("JAVA")  %>
+                <% counter += 1 %>
+              <% end %>
+              <% counter %>
+            <% end %>
+            <span class="badge-counter gray"> <%= counter %></span>
+          </li>
           <li>Objective C</li>
           <li>Php</li>
           <li>Python</li>

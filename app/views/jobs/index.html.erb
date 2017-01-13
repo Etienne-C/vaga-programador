@@ -1,0 +1,50 @@
+<div class="wrapper-index-background">
+  <h1 class="font-text-space">Vagas exclusivamente para programador</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="wrapper-index-filters font-text-space">
+        <h3>Categorias</h3>
+        <ul>
+          <li>Java
+            <% counter = 0 %>
+            <% @jobs.each do |job| %>
+              <% if job.description.include?("Java") || job.description.include?("JAVA")  %>
+                <% counter += 1 %>
+              <% end %>
+              <% counter %>
+            <% end %>
+            <span class="badge-counter gray"> <%= counter %></span>
+          </li>
+          <li>Objective C</li>
+          <li>Php</li>
+          <li>Python</li>
+          <li>C++ </li>
+          <li>JavaScript </li>
+          <li>C# </li>
+          <li>Ruby</li>
+          <li>HTML </li>
+          <li>Swift</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="wrapper-index-jobs">
+        <h3>Todas as Vagas</h3>
+        <% @jobs.each do |job| %>
+          <div class="cell-list">
+            <%= link_to job_path(job) do %>
+              <h2><%= job.job_title %></h2>
+              <div class="cell-list-content-icon font-text-space gray" >
+                <span><i class="fa fa-briefcase icons"></i><%= job.company %></span>
+                <span class="text-center"><i class="fa fa-map-marker icons"></i><%= job.city %></span>
+              </div>
+              <p class="font-text-space gray"><%= job.description.first(120) %>...</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

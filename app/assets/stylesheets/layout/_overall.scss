@@ -1,0 +1,11 @@
+body {
+  color : #232837;
+}
+
+a {
+  color : #232837;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}

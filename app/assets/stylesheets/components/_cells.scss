@@ -1,9 +1,9 @@
 .cell-list {
   border-top: 1px solid #dedede;
-  min-height: 180px;
-  padding : 0 10px;
-  a {
-    text-decoration: none;
+  min-height: 150px;
+  padding : 0 20px;
+  h2 {
+    font-size: 25px;
   }
 }
 
@@ -17,13 +17,4 @@
 
 .cell-list:hover {
   background: #F7F7F7;
-}
-
-.cell-list-content-icon {
-  margin-bottom: 15px;
-  span {
-    display: inline;
-    margin-right: 20px;
-    color: #808080;
-  }
 }

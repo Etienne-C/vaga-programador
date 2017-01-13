@@ -1,27 +1,39 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="text-center">
-        <h1><%= @job.job_title %></h1>
-        <br>
-        <div class="cell-list-content-icon" >
-          <span><i class="fa fa-briefcase"></i> <%= @job.company %></span>
-          <span><i class="fa fa-map-marker"></i> <%= @job.city %></span>
-          <span><i class="fa fa-usd"></i> <%= @job.salary %></span>
-          <span><i class="fa fa-file-text"></i> <%= @job.contract %></span>
-        </div>
+<div class="wrapper-show-job-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= link_to jobs_path do %>
+          <span><i class="fa fa-chevron-left"></i> Voltar as vagas</span>
+        <% end %>
       </div>
-      <br>
-      <h2>Sobre <%= @job.company %></h2>
-      <p><%= @job.company_description %></p>
-      <h2>Descrição da vaga</h2>
-      <p><%= @job.description %></p>
-      <h2>Perfil / Exigências</h2>
-      <p><%= @job.candidate_description %></p>
-      <br>
-      <div class="text-center">
-        <a href="<%= @job.url %>" class="btn btn-success btn-lg" target="_blank">CANDIDATAR</a>
+      <div class="col-md-9">
+        <h1><%= @job.job_title %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="icons-show-layout font-text-grey-space" >
+        <div><i class="fa fa-briefcase icons"></i> <%= @job.company %></div>
+        <div><i class="fa fa-map-marker icons"></i> <%= @job.city %></div>
+        <div><i class="fa fa-usd icons"></i> <%= @job.salary %></div>
+        <div><i class="fa fa-file-text icons"></i> <%= @job.contract %></div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="wrapper-show-job-descriptions font-text-grey-space">
+        <p><%= @job.description %></p>
+        <h2>Perfil / Exigências</h2>
+        <p><%= @job.candidate_description %></p>
+        <h2>Sobre <%= @job.company %></h2>
+        <p><%= @job.company_description %></p>
+        <br>
+        <div class="text-center">
+          <a href="<%= @job.url %>" class="btn btn-success btn-lg" target="_blank">CANDIDATAR</a>
+        </div>
       </div>
     </div>
   </div>

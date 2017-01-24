@@ -19,6 +19,8 @@ gem 'autoprefixer-rails'
 gem 'nokogiri'
 gem 'js-routes'
 gem 'react-rails', '~> 1.8'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-classnames'

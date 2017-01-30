@@ -7,11 +7,9 @@ class JobsController < ApplicationController
 
   def index
     if params[:query].present?
-      jobs = Job.search(params[:query]).sort_by &:created_at
-      @jobs = jobs.paginate(:page => params[:page], :per_page => 9)
+      @jobs = Job.search(params[:query]).sort_by &:created_at
     else
-      jobs = Job.all.sort_by &:created_at
-      @jobs = jobs.paginate(:page => params[:page], :per_page => 9)
+      @jobs = Job.all.sort_by &:created_at
     end
   end
 

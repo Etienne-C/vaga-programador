@@ -6,11 +6,17 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jobs = Job.all.sort_by &:created_at
-    @paginates = Job.paginate(:page => params[:page], :per_page => 5)
+    if params[:query].present?
+      jobs = Job.search(params[:query]).sort_by &:created_at
+      @jobs = jobs.paginate(:page => params[:page], :per_page => 9)
+    else
+      jobs = Job.all.sort_by &:created_at
+      @jobs = jobs.paginate(:page => params[:page], :per_page => 9)
+    end
   end
 
   def show
+    @jobs = Job.all
   end
 
   def new

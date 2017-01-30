@@ -2,7 +2,11 @@ require 'open-uri'
 require 'nokogiri'
 
 class Job < ApplicationRecord
+  CATEGORIES = ["Java", "Objective C", "Php", "Python", "C++", "Javascript", "C#", "Ruby", "HTML", "Swift"]
+
   validates :job_title, :description, :company, :city, presence: true
+  include PgSearch
+  pg_search_scope :search, against: [ :job_title, :candidate_description ]
 
   def scrapping_infojobs
     page = 0

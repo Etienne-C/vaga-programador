@@ -6,26 +6,17 @@
     <div class="col-sm-3">
       <div class="wrapper-index-filters font-text-space">
         <h3>Categorias</h3>
+        <%= link_to "Todas as vagas", jobs_path %>
+        <span class="badge-counter gray"> <%= Job.all.count %></span>
         <ul>
-          <li>Java
-            <% counter = 0 %>
-            <% @jobs.each do |job| %>
-              <% if job.description.include?("Java") || job.description.include?("JAVA")  %>
-                <% counter += 1 %>
-              <% end %>
-              <% counter %>
-            <% end %>
-            <span class="badge-counter gray"> <%= counter %></span>
-          </li>
-          <li>Objective C</li>
-          <li>Php</li>
-          <li>Python</li>
-          <li>C++ </li>
-          <li>JavaScript </li>
-          <li>C# </li>
-          <li>Ruby</li>
-          <li>HTML </li>
-          <li>Swift</li>
+          <% Job::CATEGORIES.each do |category|%>
+            <li>
+              <form action="/jobs" method="GET">
+                <input value="<%= category %>" name="query" id=”query” type="submit" class="btn-list-search">
+                <span class="badge-counter gray"> <%= Job.search(category).count %></span>
+              </form>
+            <li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -45,20 +36,6 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-        <div class="cell-list">
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- tet liens d'annonces vagas progrmador -->
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-8238946039424735"
-               data-ad-slot="1099314401"
-               data-ad-format="link"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-
-          <script type="text/javascript" src="http://www.google.com.br/coop/cse/brand?form=cse-search-box&amp;lang=pt"></script>
-        </div>
 
         <% @jobs.each do |job| %>
           <div class="cell-list">
@@ -72,9 +49,22 @@
             <% end %>
           </div>
         <% end %>
+
+        <div class="cell-list">
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- Vagas programador -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-8238946039424735"
+               data-ad-slot="4488589603"
+               data-ad-format="auto"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
       </div>
       <div class="text-center">
-        <%= will_paginate @paginates %>
+        <%= will_paginate @jobs %>
       </div>
       <br>
     </div>

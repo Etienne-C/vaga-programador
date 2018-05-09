@@ -1,16 +1,10 @@
-require 'open-uri'
-require 'nokogiri'
-
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:query].present?
-      @jobs = Job.search(params[:query]).sort_by &:created_at
-    else
-      @jobs = Job.all.sort_by &:created_at
-    end
+    @jobs = Job.all.sort_by &:created_at
+    @jobs = Job.search(params[:query]).sort_by &:created_at if params[:query].present?
   end
 
   def show
